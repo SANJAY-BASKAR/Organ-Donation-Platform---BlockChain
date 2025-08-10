@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="organ donation, blockchain, organ transplant">
+    <meta name="description" content="Organ Donation Platform using Blockchain">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/fontawesome-all.css">
+    <link rel="icon" href="../images/organ-donation-logo-new.svg">
+    <script src="../main.js"></script>
+    
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --primary-dark: #2980b9;
+            --accent-color: #e74c3c;
+            --light-bg: #a8e1fa;
+            --dark-text: #2c3e50;
+            --light-text: #ecf0f1;
+            --card-bg: #ffffff;
+            --transition-speed: 0.3s;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-text);
+            overflow-x: hidden;
+            background-color: #f8f9fa;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.5s ease-out;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        #logo {
+            height: 60px;
+            transition: transform var(--transition-speed);
+        }
+        
+        #logo:hover {
+            transform: scale(1.05);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 8px 0;
+            position: relative;
+            transition: color var(--transition-speed);
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width var(--transition-speed);
+        }
+        
+        nav ul li a:hover:after,
+        nav ul li a.active:after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background-color: var(--light-bg);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section:before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+            animation: rotate 60s linear infinite;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero-content h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--dark-text);
+            line-height: 1.2;
+        }
+        
+        .hero-content h3 {
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 30px;
+            color: var(--dark-text);
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            background-color: var(--accent-color);
+            color: var(--light-text);
+            border: none;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        }
+        
+        .cta-button:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+            text-decoration: none;
+            color: var(--light-text);
+        }
+        
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: -100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.6s;
+        }
+        
+        .cta-button:hover::after {
+            left: 100%;
+        }
+        
+        .hero-image {
+            position: relative;
+            animation: floatImage 4s ease-in-out infinite;
+            z-index: 2;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        /* Hero buttons */
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .dashboard-cta {
+            background-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        .dashboard-cta:hover {
+            background-color: #2980b9;
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            font-weight: 700;
+            color: var(--dark-text);
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .stat-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .stat-card img {
+            height: 80px;
+            margin-bottom: 20px;
+            transition: transform var(--transition-speed);
+        }
+        
+        .stat-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .stat-card p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 0;
+            background-color: var(--light-bg);
+        }
+        
+        .accordion-item {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: box-shadow var(--transition-speed);
+        }
+        
+        .accordion-item:hover {
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+        
+        .accordion-header {
+            cursor: pointer;
+            padding: 20px;
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--dark-text);
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color var(--transition-speed);
+        }
+        
+        .accordion-header:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .accordion-header i {
+            transition: transform var(--transition-speed);
+            color: var(--primary-color);
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 20px;
+            transition: max-height var(--transition-speed), padding var(--transition-speed);
+        }
+        
+        .accordion-item.active .accordion-header {
+            background-color: #f8f9fa;
+        }
+        
+        .accordion-item.active .accordion-header i {
+            transform: rotate(180deg);
+        }
+        
+        .accordion-item.active .accordion-content {
+            max-height: 300px;
+            padding: 0 20px 20px;
+        }
+        
+        .accordion-content p {
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-text);
+            color: var(--light-text);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-logo img {
+            height: 60px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-links {
+            margin-bottom: 30px;
+        }
+        
+        .footer-links h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-links h4:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        #copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 20px;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes floatImage {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+        
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .count-up {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 991px) {
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .hero-content h3 {
+                font-size: 18px;
+            }
+            
+            .cta-button {
+                padding: 14px 28px;
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            nav {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px 10px;
+            }
+            
+            .hero-section {
+                padding: 60px 0;
+                text-align: center;
+            }
+            
+            .hero-image {
+                margin-top: 30px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+
+    <title>Organ Donation Platform</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav>
+                        <a href="/homepage"><img id="logo" src="../images/organ-donation-platform-logo-1.svg" alt="Organ Donation Platform"></a>
+                        <ul>
+                            <li><a class="active" href="/homepage">Home</a></li>
+                            <li><a href="/about-us">About Us</a></li>
+                            <li><a href="/contact">Contact</a></li>
+                            <li><a href="/awareness">Awareness</a></li>
+                            <li><a href="/donor-pledge">Pledge</a></li>
+                            <li><a href="/search">Search</a></li>
+                            <li><a href="/" class="dashboard-link">Dashboard <i class="fas fa-chart-line"></i></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7">
+                        <div class="hero-content">
+                            <h1>Pledge To Become <br>A Donor</h1>
+                            <h3>More than 100,000 people are waiting for a lifesaving transplant. You can help.</h3>
+                            <div class="hero-buttons">
+                                <a href="/donor-pledge" class="cta-button">
+                                    <i class="fas fa-heart"></i> Pledge To Become A Donor
+                                </a>
+                                <a href="/" class="cta-button dashboard-cta">
+                                    <i class="fas fa-chart-line"></i> Access Dashboard
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="hero-image">
+                            <img src="../images/header-image-new.png" alt="Organ Donation Illustration">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="container">
+                <h2 class="section-title">The Need</h2>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="stat-card" data-aos="fade-up">
+                            <img src="../images/waiting-list-icon.svg" alt="Waiting List Icon">
+                            <div class="count-up" id="count1">9</div>
+                            <p>A person is added to the waiting list every 9 minutes</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+                            <img src="../images/transplant-icon.svg" alt="Transplant Icon">
+                            <div class="count-up" id="count2">17</div>
+                            <p>People die each day while waiting for an organ transplant</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                            <img src="../images/donation-icon.svg" alt="Donation Icon">
+                            <div class="count-up" id="count3">75</div>
+                            <p>One organ, eye and tissue donor can save and heal more than 75 lives</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    Who can be a donor? <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>People of all ages and medical histories should consider themselves potential donors. Your medical condition at the time of death will determine what organs and tissues can be donated.</p>
+                                    <p>A national system matches available organs from the donor with people on the waiting list based on blood type, body size, how sick they are, donor distance, tissue type and time on the list. Sexual orientation, gender, gender identity or expression, race, income, celebrity and social status are never considered.</p>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    How does the deceased donation process work? <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Deceased organ donation is the process of giving an organ or a part of an organ, at the time of the donor's death, for the purpose of transplantation to another person. Only after all efforts to save the patient's life have been exhausted, tests have been performed to confirm the absence of brain or brainstem activity, and brain death has been declared, is donation a possibility.</p>
+                                    <p>The state donor registry and National Donate Life Registry are searched securely online to determine if the patient has authorized donation. If the potential donor is not found in a registry, their next of kin or legally authorized representative is offered the opportunity to authorize the donation. Donation and transplantation professionals follow national policy to determine which organs can be transplanted and to which patients on the national transplant waiting list the organs are to be allocated.</p>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    Is there a cost to be an organ, eye and tissue donor? <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>There is no cost to the donor's family or estate for donation. The donor family pays only for medical expenses before death and costs associated with funeral arrangements.</p>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    Does registering as a donor change my patient care? <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Your life always comes first. Doctors work hard to save every patient's life, but sometimes there is a complete and irreversible loss of brain function. The patient is declared clinically and legally dead. Only then is donation an option.</p>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    I want to learn more about living donation. Where should I look? <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Living organ donation offers another choice for some transplant candidates, reducing their time on the waiting list and leading to better long term outcomes for the recipient.</p>
+                                    <p>Living tissue donation, birth tissue, is used to promote healing and to treat burns and painful wounds.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-logo">
+                        <img src="../images/organ-donation-platform-logo-white.svg" alt="Organ Donation Platform">
+                    </div>
+                    <p>Our platform connects organ donors with recipients using secure blockchain technology, making the organ donation process more transparent, secure, and efficient.</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-links">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="/homepage">Home</a></li>
+                            <li><a href="/about-us">About Us</a></li>
+                            <li><a href="/contact">Contact</a></li>
+                            <li><a href="/awareness">Awareness</a></li>
+                            <li><a href="/donor-pledge">Pledge</a></li>
+                            <li><a href="/search">Search</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-links">
+                        <h4>Platform</h4>
+                        <ul>
+                            <li><a href="/">Dashboard</a></li>
+                            <li><a href="/donor-registration">Register as Donor</a></li>
+                            <li><a href="/patient-registration">Register as Patient</a></li>
+                            <li><a href="/view-donors">View Donors</a></li>
+                            <li><a href="/view-patients">View Patients</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div id="copyright">
+                        <p>Copyright © 2025 Organ Donation Platform - All rights reserved</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                
+                header.addEventListener('click', () => {
+                    // Close all other accordion items
+                    accordionItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // Count-up animation for statistics
+            function animateCountUp(elementId, targetValue, duration = 2000) {
+                const element = document.getElementById(elementId);
+                if (!element) return;
+                
+                let startTime = null;
+                const startValue = 0;
+                
+                function step(timestamp) {
+                    if (!startTime) startTime = timestamp;
+                    const progress = Math.min((timestamp - startTime) / duration, 1);
+                    const currentValue = Math.floor(progress * (targetValue - startValue) + startValue);
+                    
+                    element.textContent = currentValue;
+                    
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    } else {
+                        element.textContent = targetValue;
+                    }
+                }
+                
+                window.requestAnimationFrame(step);
+            }
+            
+            // Intersection Observer for animation triggers
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Stat counters
+                        if (entry.target.classList.contains('stat-card')) {
+                            const countElements = document.querySelectorAll('.count-up');
+                            if (countElements[0] && countElements[0].id === 'count1') animateCountUp('count1', 9);
+                            if (countElements[1] && countElements[1].id === 'count2') animateCountUp('count2', 17);
+                            if (countElements[2] && countElements[2].id === 'count3') animateCountUp('count3', 75);
+                        }
+                        
+                        // Remove observer after animation triggered
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            
+            // Observe elements that should trigger animations
+            document.querySelectorAll('.stat-card').forEach(card => {
+                observer.observe(card);
+            });
+            
+            // Micro-interactions for buttons
+            document.querySelectorAll('.cta-button').forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

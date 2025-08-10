@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,700;1,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link href="../css/styles.css" rel="stylesheet">
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="../css/fontawesome-all.css" rel="stylesheet">
+        <link rel="icon" href="../images/organ-donation-logo-new.svg">
+        <script src="../js/navigation.js"></script>
+        <script src="../main.js"></script>
+
+        <style>
+            /* Styling to match the donor-pledge.html */
+            body {
+                background-color: #a8e1fa; /* Light blue background to match platform */
+                font-family: 'Montserrat', sans-serif;
+                color: var(--dark-text);
+                line-height: 1.6;
+            }
+            
+            :root {
+                --primary-color: #3498db;
+                --primary-dark: #2980b9;
+                --accent-color: #e74c3c;
+                --light-bg: #a8e1fa;
+                --dark-text: #2c3e50;
+                --light-text: #ecf0f1;
+                --card-bg: #ffffff;
+                --transition-speed: 0.3s;
+            }
+            
+            .registration-card {
+                background-color: var(--card-bg);
+                border-radius: 10px;
+                padding: 40px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                animation: fadeInUp 1s ease-out;
+                margin-bottom: 30px;
+            }
+            
+            .section-title {
+                margin-bottom: 20px;
+                border-bottom: 2px solid #f0f0f0;
+                padding-bottom: 10px;
+            }
+            
+            .section-title h4 {
+                color: var(--dark-text);
+                font-weight: 600;
+                font-size: 18px;
+                margin: 0;
+            }
+            
+            .section-title i {
+                margin-right: 10px;
+                color: var(--primary-color);
+            }
+            
+            .form-row {
+                display: flex;
+                flex-wrap: wrap;
+                margin-right: -15px;
+                margin-left: -15px;
+            }
+            
+            .form-group {
+                margin-bottom: 20px;
+                position: relative;
+                z-index: 2;
+            }
+            
+            .col-md-4, .col-md-6 {
+                padding-right: 15px;
+                padding-left: 15px;
+                position: relative;
+                width: 100%;
+            }
+            
+            @media (min-width: 768px) {
+                .col-md-4 {
+                    flex: 0 0 33.333333%;
+                    max-width: 33.333333%;
+                }
+                
+                .col-md-6 {
+                    flex: 0 0 50%;
+                    max-width: 50%;
+                }
+            }
+            
+            .form-control {
+                width: 100%;
+                padding: 12px 15px;
+                border: 2px solid #e0e0e0;
+                border-radius: 8px;
+                font-size: 16px;
+                transition: all var(--transition-speed);
+                font-family: 'Montserrat', sans-serif;
+                background-color: #f9fafb;
+            }
+            
+            .form-control:focus {
+                border-color: var(--primary-color);
+                box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+                outline: none;
+                background-color: #fff;
+            }
+            
+            .form-control:hover:not(:focus) {
+                border-color: #ccc;
+            }
+            
+            .form-label {
+                display: block;
+                margin-bottom: 8px;
+                font-weight: 600;
+                color: var(--dark-text);
+                font-size: 16px;
+            }
+            
+            .radio-group {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+                margin-top: 5px;
+            }
+            
+            .radio-option, .checkbox-option {
+                position: relative;
+                cursor: pointer;
+            }
+            
+            .radio-option {
+                flex: 1;
+                min-width: 100px;
+            }
+            
+            .radio-option input[type="radio"],
+            .checkbox-option input[type="checkbox"] {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+            }
+            
+            .radio-label, .checkbox-label {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background-color: #f8f9fa;
+                border: 2px solid transparent;
+                border-radius: 8px;
+                padding: 10px 15px;
+                text-align: center;
+                transition: all 0.3s ease;
+                height: 100%;
+                font-weight: 500;
+            }
+            
+            .radio-label:hover, .checkbox-label:hover {
+                background-color: #eef1f5;
+                transform: translateY(-3px);
+            }
+            
+            .radio-icon, .organ-icon {
+                font-size: 24px;
+                margin-bottom: 8px;
+                color: var(--primary-color);
+            }
+            
+            .radio-option input[type="radio"]:checked + .radio-label,
+            .checkbox-option input[type="checkbox"]:checked + .checkbox-label {
+                background-color: rgba(52, 152, 219, 0.1);
+                border-color: var(--primary-color);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+            
+            .radio-option input[type="radio"]:checked + .radio-label::before,
+            .checkbox-option input[type="checkbox"]:checked + .checkbox-label::before {
+                content: '';
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                width: 6px;
+                height: 12px;
+                border: solid var(--primary-color);
+                border-width: 0 2px 2px 0;
+                transform: rotate(45deg);
+            }
+            
+            .organ-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+                margin-top: 10px;
+            }
+            
+            /* Organ display area on the right */
+            .organ-display {
+                margin-bottom: 30px;
+                animation: fadeInUp 1s ease-out;
+                position: sticky;
+                top: 20px;
+                z-index: 10;
+            }
+            
+            .organ-preview {
+                background-color: var(--card-bg);
+                border-radius: 10px;
+                padding: 30px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                transition: all 0.3s ease;
+            }
+            
+            .organ-preview h3 {
+                text-align: center;
+                margin-bottom: 20px;
+                color: var(--dark-text);
+                font-weight: 700;
+                font-size: 24px;
+                position: relative;
+            }
+            
+            .organ-preview h3::after {
+                content: '';
+                position: absolute;
+                width: 50px;
+                height: 3px;
+                background-color: var(--accent-color);
+                bottom: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                border-radius: 2px;
+            }
+            
+            .preview-container {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .organ-image-container {
+                width: 100%;
+                height: 250px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 20px;
+                position: relative;
+            }
+            
+            #organPreviewImage {
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: contain;
+                transition: all 0.5s ease;
+                animation: fadeIn 0.5s ease-out;
+            }
+            
+            .organ-info {
+                text-align: center;
+                padding: 20px;
+            }
+            
+            .organ-info h4 {
+                font-size: 22px;
+                font-weight: 600;
+                margin-bottom: 10px;
+                color: var(--primary-color);
+            }
+            
+            .organ-info p {
+                color: var(--dark-text);
+                font-size: 16px;
+                line-height: 1.6;
+            }
+            
+            .hidden {
+                opacity: 0;
+                visibility: hidden;
+            }
+            
+            .btn-submit {
+                background-color: var(--accent-color);
+                color: white;
+                border: none;
+                border-radius: 50px;
+                padding: 15px 30px;
+                font-size: 18px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all var(--transition-speed);
+                display: block;
+                margin: 40px auto 0;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+                width: 100%;
+            }
+            
+            .btn-submit:hover {
+                background-color: #c0392b;
+                transform: translateY(-3px);
+                box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+            }
+            
+            .btn-submit::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: -100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+                transition: all 0.6s;
+            }
+            
+            .btn-submit:hover::after {
+                left: 100%;
+            }
+            
+            .btn-icon {
+                margin-right: 8px;
+            }
+            
+            .alert {
+                display: none;
+                padding: 15px 20px;
+                border-radius: 8px;
+                margin-top: 30px;
+                position: relative;
+                animation: slideInUp 0.5s ease-out;
+            }
+            
+            .alert.warning {
+                background-color: #fef5e7;
+                border-left: 4px solid #f39c12;
+                color: #9a7d0a;
+            }
+            
+            .alert.success {
+                background-color: #e9f7ef;
+                border-left: 4px solid #27ae60;
+                color: #196f3d;
+            }
+            
+            .closebtn {
+                position: absolute;
+                top: 15px;
+                right: 20px;
+                font-size: 20px;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+            
+            .closebtn:hover {
+                color: black;
+            }
+            
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            @keyframes slideInUp {
+                from {
+                    transform: translateY(10px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+            
+            /* Spinner animation from styles.css */
+            .spinner {
+                margin: 100px auto 0;
+                width: 70px;
+                text-align: center;
+            }
+            
+            .spinner > div {
+                width: 18px;
+                height: 18px;
+                background-color: #333;
+                border-radius: 100%;
+                display: inline-block;
+                -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+                animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+            }
+            
+            .spinner .bounce1 {
+                -webkit-animation-delay: -0.32s;
+                animation-delay: -0.32s;
+            }
+            
+            .spinner .bounce2 {
+                -webkit-animation-delay: -0.16s;
+                animation-delay: -0.16s;
+            }
+            
+            @-webkit-keyframes sk-bouncedelay {
+                0%, 80%, 100% { -webkit-transform: scale(0) }
+                40% { -webkit-transform: scale(1.0) }
+            }
+            
+            @keyframes sk-bouncedelay {
+                0%, 80%, 100% { 
+                    -webkit-transform: scale(0);
+                    transform: scale(0);
+                } 40% { 
+                    -webkit-transform: scale(1.0);
+                    transform: scale(1.0);
+                }
+            }
+            
+            @media (max-width: 992px) {
+                .row.center-box {
+                    flex-direction: column;
+                }
+                
+                .organ-preview {
+                    margin-top: 20px;
+                }
+            }
+        </style>
+
+        <title>Patient Registration - Organ Donation Platform</title>
+    </head>
+
+    <body>
+        <!-- Loading Overlay -->
+        <!-- <div class="loading-overlay" id="loadingOverlay">
+            <div class="loader-content">
+                <div class="loader"></div>
+                <div class="loader-text">Processing your registration...</div>
+            </div>
+        </div>
+         -->
+        <!-- Header will be loaded by navigation.js -->
+        <header></header>
+        
+        <main>
+            <div class="container">
+                <div class="row center-box">
+                    <div class="col-md-12">
+                        <h3>Patient Registration</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container">
+                <div class="row center-box">
+                    <div class="col-md-8">
+                        <div class="registration-card">
+                            <form id="patientForm">
+                                <!-- Personal Information -->
+                                <div class="section-title">
+                                    <h4><i class="fas fa-user-circle"></i> Personal Information</h4>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label" for="PatientFullName">Full Name</label>
+                                    <input type="text" class="form-control" id="PatientFullName" placeholder="Enter your full name">
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label" for="PatientAge">Age</label>
+                                        <input type="number" class="form-control" id="PatientAge" placeholder="Enter your age" min="1" max="120">
+                                    </div>
+                                    
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label">Gender</label>
+                                        <div class="radio-group">
+                                            <div class="radio-option">
+                                                <input type="radio" id="male" name="gender" value="Male">
+                                                <label class="radio-label" for="male">
+                                                    <i class="fas fa-mars radio-icon"></i>
+                                                    Male
+                                                </label>
+                                            </div>
+                                            <div class="radio-option">
+                                                <input type="radio" id="female" name="gender" value="Female">
+                                                <label class="radio-label" for="female">
+                                                    <i class="fas fa-venus radio-icon"></i>
+                                                    Female
+                                                </label>
+                                            </div>
+                                            <div class="radio-option">
+                                                <input type="radio" id="other" name="gender" value="Other">
+                                                <label class="radio-label" for="other">
+                                                    <i class="fas fa-transgender radio-icon"></i>
+                                                    Other
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label" for="PatientMedicalID">Medical ID</label>
+                                    <input type="text" class="form-control" id="PatientMedicalID" placeholder="Enter your medical ID">
+                                </div>
+                                
+                                <!-- Medical Information -->
+                                <div class="section-title">
+                                    <h4><i class="fas fa-heartbeat"></i> Medical Information</h4>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label class="form-label" for="PatientBloodType">Blood Type</label>
+                                        <select class="form-control" id="PatientBloodType">
+                                            <option value="A+">A+</option>
+                                            <option value="A-">A-</option>
+                                            <option value="B+">B+</option>
+                                            <option value="B-">B-</option>
+                                            <option value="AB+">AB+</option>
+                                            <option value="AB-">AB-</option>
+                                            <option value="O+">O+</option>
+                                            <option value="O-">O-</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group col-md-4">
+                                        <label class="form-label" for="PatientWeight">Weight (kg)</label>
+                                        <input type="number" class="form-control" id="PatientWeight" placeholder="Weight" min="1" max="250">
+                                    </div>
+                                    
+                                    <div class="form-group col-md-4">
+                                        <label class="form-label" for="PatientHeight">Height (cm)</label>
+                                        <input type="number" class="form-control" id="PatientHeight" placeholder="Height" min="30" max="250">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Organs Needed</label>
+                                    <div class="organ-grid">
+                                        <div class="checkbox-option">
+                                            <input type="checkbox" id="leftKidney" name="Organ" value="Left Kidney" class="organ-checkbox">
+                                            <label class="checkbox-label" for="leftKidney">
+                                                <i class="fas fa-kidneys organ-icon"></i>
+                                                Left Kidney
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="checkbox-option">
+                                            <input type="checkbox" id="rightKidney" name="Organ" value="Right Kidney" class="organ-checkbox">
+                                            <label class="checkbox-label" for="rightKidney">
+                                                <i class="fas fa-kidneys organ-icon"></i>
+                                                Right Kidney
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="checkbox-option">
+                                            <input type="checkbox" id="leftLung" name="Organ" value="Left Lung" class="organ-checkbox">
+                                            <label class="checkbox-label" for="leftLung">
+                                                <i class="fas fa-lungs organ-icon"></i>
+                                                Left Lung
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="checkbox-option">
+                                            <input type="checkbox" id="rightLung" name="Organ" value="Right Lung" class="organ-checkbox">
+                                            <label class="checkbox-label" for="rightLung">
+                                                <i class="fas fa-lungs organ-icon"></i>
+                                                Right Lung
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="checkbox-option">
+                                            <input type="checkbox" id="liver" name="Organ" value="Liver" class="organ-checkbox">
+                                            <label class="checkbox-label" for="liver">
+                                                <i class="fas fa-virus organ-icon"></i>
+                                                Liver
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="checkbox-option">
+                                            <input type="checkbox" id="heart" name="Organ" value="Heart" class="organ-checkbox">
+                                            <label class="checkbox-label" for="heart">
+                                                <i class="fas fa-heart organ-icon"></i>
+                                                Heart
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="checkbox-option">
+                                            <input type="checkbox" id="pancreas" name="Organ" value="Pancreas" class="organ-checkbox">
+                                            <label class="checkbox-label" for="pancreas">
+                                                <i class="fas fa-dna organ-icon"></i>
+                                                Pancreas
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="checkbox-option">
+                                            <input type="checkbox" id="intestine" name="Organ" value="Intestine" class="organ-checkbox">
+                                            <label class="checkbox-label" for="intestine">
+                                                <i class="fas fa-wind organ-icon"></i>
+                                                Intestine
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <button type="button" class="btn-submit" onclick="App.register('Patient')">
+                                    <i class="fas fa-user-plus"></i> Register as Patient
+                                </button>
+                            </form>
+                            
+                            <div class="alert warning">
+                                <span id="PatientInputCheck"></span>
+                                <span class="closebtn" onclick="App.closeAlert();">&times;</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="organ-display">
+                            <div class="organ-preview">
+                                <h3>Selected Organ</h3>
+                                <div class="preview-container">
+                                    <div class="organ-image-container">
+                                        <img src="../images/organ-icons/placeholder.png" id="organPreviewImage" alt="Select an organ" class="hidden">
+                                    </div>
+                                    <div class="organ-info">
+                                        <h4 id="selectedOrganName">No organ selected</h4>
+                                        <p id="organDescription">Please select an organ from the list to see details.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="spinner" style="display: none;">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Organ information with descriptions
+                const organInfo = {
+                    heart: {
+                        name: "Heart",
+                        description: "The heart is a vital organ responsible for pumping blood throughout the body. Heart transplants can save lives of those with end-stage heart failure.",
+                        image: "../images/organ-icons/heart.png"
+                    },
+                    leftKidney: {
+                        name: "Left Kidney",
+                        description: "Kidneys filter waste from blood, balance body fluids, and regulate blood pressure. A kidney transplant relieves you from dialysis and improves quality of life.",
+                        image: "../images/organ-icons/kidney.png"
+                    },
+                    rightKidney: {
+                        name: "Right Kidney",
+                        description: "Kidneys filter waste from blood, balance body fluids, and regulate blood pressure. A kidney transplant relieves you from dialysis and improves quality of life.",
+                        image: "../images/organ-icons/kidney.png"
+                    },
+                    leftLung: {
+                        name: "Left Lung",
+                        description: "Lungs are essential for breathing, allowing oxygen to enter the bloodstream. A lung transplant helps those with severe lung diseases breathe easier and improves energy levels.",
+                        image: "../images/organ-icons/lung.png"
+                    },
+                    rightLung: {
+                        name: "Right Lung",
+                        description: "Lungs are essential for breathing, allowing oxygen to enter the bloodstream. A lung transplant helps those with severe lung diseases breathe easier and improves energy levels.",
+                        image: "../images/organ-icons/lung.png"
+                    },
+                    liver: {
+                        name: "Liver",
+                        description: "The liver detoxifies, produces proteins, and breaks down nutrients. A liver transplant is life-saving for people with end-stage liver disease.",
+                        image: "../images/organ-icons/liver.png"
+                    },
+                    pancreas: {
+                        name: "Pancreas",
+                        description: "The pancreas produces insulin and digestive enzymes. A pancreas transplant can free people with Type 1 diabetes from insulin injections.",
+                        image: "../images/organ-icons/pancreas.png"
+                    },
+                    intestine: {
+                        name: "Intestine",
+                        description: "The intestines absorb nutrients from food. An intestinal transplant helps those who can no longer absorb nutrients due to intestinal failure.",
+                        image: "../images/organ-icons/intestine.png"
+                    }
+                };
+                
+                // Add click handler for organ checkboxes
+                const checkboxes = document.querySelectorAll('.organ-checkbox');
+                
+                checkboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', function() {
+                        const label = this.nextElementSibling;
+                        const previewImage = document.getElementById('organPreviewImage');
+                        const selectedOrganName = document.getElementById('selectedOrganName');
+                        const organDescription = document.getElementById('organDescription');
+                        
+                        // Reset all organ label styling but maintain selection
+                        document.querySelectorAll('.organ-checkbox').forEach(cb => {
+                            const otherLabel = cb.nextElementSibling;
+                            if (cb !== this) {
+                                otherLabel.style.boxShadow = 'none';
+                            }
+                        });
+                        
+                        if (this.checked) {
+                            // Highlight the selected organ in the grid
+                            label.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.15)';
+                            
+                            // Add a slight pulse animation when checked
+                            label.animate([
+                                { transform: 'scale(1)' },
+                                { transform: 'scale(1.05)' },
+                                { transform: 'scale(1)' }
+                            ], {
+                                duration: 300,
+                                easing: 'ease-in-out'
+                            });
+                            
+                            // Get the selected organ info
+                            const organ = organInfo[this.id];
+                            
+                            if (organ) {
+                                // Hide image during transition
+                                previewImage.classList.add('hidden');
+                                
+                                // Update the display after a short delay (for animation)
+                                setTimeout(() => {
+                                    // Set the image
+                                    previewImage.src = organ.image;
+                                    selectedOrganName.textContent = organ.name;
+                                    organDescription.textContent = organ.description;
+                                    
+                                    // Show the image with animation
+                                    previewImage.classList.remove('hidden');
+                                    
+                                    // Add entrance animation for new organ
+                                    previewImage.animate([
+                                        { opacity: 0, transform: 'scale(0.8)' },
+                                        { opacity: 1, transform: 'scale(1)' }
+                                    ], {
+                                        duration: 500,
+                                        easing: 'ease-out'
+                                    });
+                                }, 200);
+                            }
+                        } else {
+                            // If unchecked, remove highlight
+                            label.style.boxShadow = 'none';
+                        }
+                    });
+                });
+                
+                // Show loading spinner when submitting form
+                const submitButton = document.querySelector('.btn-submit');
+                if (submitButton) {
+                    submitButton.addEventListener('click', function() {
+                        const spinner = document.querySelector('.spinner');
+                        if (spinner) {
+                            spinner.style.display = 'block';
+                            
+                            // Set a timeout to hide spinner if it takes too long
+                            setTimeout(function() {
+                                if (spinner.style.display === 'block') {
+                                    spinner.style.display = 'none';
+                                    
+                                    // Check if error message is displayed
+                                    const inputCheck = document.getElementById('PatientInputCheck');
+                                    if (inputCheck && inputCheck.textContent === '') {
+                                        inputCheck.textContent = 'Request took too long. Please try again.';
+                                        const alert = document.querySelector('.alert');
+                                        if (alert) {
+                                            alert.style.display = 'block';
+                                        }
+                                    }
+                                }
+                            }, 30000); // 30 seconds timeout
+                        }
+                    });
+                }
+                
+                // Monitor for changes to the PatientInputCheck element
+                const targetNode = document.getElementById('PatientInputCheck');
+                if (targetNode) {
+                    const observer = new MutationObserver(function(mutations) {
+                        mutations.forEach(function(mutation) {
+                            if (mutation.type === 'childList' && targetNode.textContent) {
+                                // Hide spinner when response is received
+                                const spinner = document.querySelector('.spinner');
+                                if (spinner) {
+                                    spinner.style.display = 'none';
+                                }
+                                
+                                // Show alert
+                                const alert = document.querySelector('.alert');
+                                if (alert) {
+                                    alert.style.display = 'block';
+                                    
+                                    // If success message, change alert class
+                                    if (targetNode.textContent.includes('successfully')) {
+                                        alert.classList.remove('warning');
+                                        alert.classList.add('success');
+                                    }
+                                }
+                            }
+                        });
+                    });
+                    
+                    observer.observe(targetNode, { childList: true, subtree: true });
+                }
+            });
+        </script>
+    </body>
+</html>

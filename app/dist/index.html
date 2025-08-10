@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,700;1,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link href="css/styles.css" rel="stylesheet">
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/fontawesome-all.css" rel="stylesheet">
+        <link rel="icon" href="images/organ-donation-logo-new.svg">
+        <script src="js/dashboard-navigation.js"></script>
+        <script src="main.js"></script>
+
+        <style>
+            :root {
+                --primary-color: #3498db;
+                --primary-dark: #2980b9;
+                --accent-color: #e74c3c;
+                --light-bg: #a8e1fa;
+                --dark-text: #2c3e50;
+                --light-text: #ecf0f1;
+                --card-bg: #ffffff;
+                --transition-speed: 0.3s;
+            }
+            
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            
+            body {
+                background-color: var(--light-bg);
+                font-family: 'Montserrat', sans-serif;
+                color: var(--dark-text);
+                overflow-x: hidden;
+            }
+            
+            /* Header & Navigation - Matching homepage exactly */
+            header {
+                background-color: #fff;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+                animation: slideDown 0.5s ease-out;
+                margin-bottom: 30px;
+            }
+            
+            nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 15px 0;
+                background-color: white;
+            }
+            
+            #logo {
+                height: 60px;
+                transition: transform var(--transition-speed);
+            }
+            
+            #logo:hover {
+                transform: scale(1.05);
+            }
+            
+            nav ul {
+                display: flex;
+                list-style: none;
+                margin: 0;
+            }
+            
+            nav ul li {
+                margin-left: 30px;
+                color: black;
+            }
+            
+            nav ul li a {
+                color: var(--dark-text);
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 16px;
+                padding: 8px 0;
+                position: relative;
+                transition: color var(--transition-speed);
+            }
+            
+            nav ul li a:hover {
+                color: var(--primary-color);
+            }
+            
+            nav ul li a:after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 3px;
+                bottom: 0;
+                left: 0;
+                background-color: var(--primary-color);
+                transition: width var(--transition-speed);
+            }
+            
+            nav ul li a:hover:after,
+            nav ul li a.active:after {
+                width: 100%;
+            }
+            
+            .dashboard-link {
+                color: var(--primary-color) !important;
+            }
+            
+            /* Dashboard styles */
+            .dashboard-title {
+                color: var(--dark-text);
+                text-align: center;
+                position: relative;
+                font-weight: 700;
+                padding-bottom: 15px;
+                margin-bottom: 30px;
+                animation: fadeIn 1s ease-in-out;
+                font-size: 32px;
+                margin-top: 20px;
+            }
+            
+            .dashboard-title:after {
+                content: '';
+                position: absolute;
+                width: 80px;
+                height: 4px;
+                background-color: var(--accent-color);
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                border-radius: 2px;
+                animation: scaleIn 1s ease-in-out;
+            }
+            
+            .dashboard-container {
+                padding: 20px 0 40px;
+            }
+            
+            .card-dashboard {
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+                padding: 25px;
+                margin-bottom: 25px;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                height: 100%;
+                animation: slideUp 0.5s ease-in-out;
+            }
+            
+            .card-dashboard:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            }
+            
+            .card-title {
+                color: var(--primary-color);
+                font-weight: 600;
+                font-size: 18px;
+                margin-bottom: 15px;
+                text-align: center;
+                border-bottom: 2px solid #f1f1f1;
+                padding-bottom: 10px;
+            }
+            
+            .button-container {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .dashboard-btn {
+                background-color: var(--primary-color);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                padding: 12px 15px;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none;
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+                width: 100%;
+            }
+            
+            .dashboard-btn:hover {
+                background-color: var(--primary-dark);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                color: white;
+                text-decoration: none;
+            }
+            
+            .dashboard-btn:active {
+                transform: translateY(0);
+            }
+            
+            .dashboard-btn i {
+                margin-right: 8px;
+                font-size: 16px;
+            }
+            
+            .dashboard-btn::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 5px;
+                height: 5px;
+                background: rgba(255, 255, 255, 0.5);
+                opacity: 0;
+                border-radius: 100%;
+                transform: scale(1, 1) translate(-50%);
+                transform-origin: 50% 50%;
+            }
+            
+            .dashboard-btn:focus:not(:active)::after {
+                animation: ripple 1s ease-out;
+            }
+            
+            .search-card {
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+                padding: 25px;
+                margin-bottom: 25px;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                animation: slideUp 0.7s ease-in-out;
+            }
+            
+            .search-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            }
+            
+            .search-title {
+                color: var(--primary-color);
+                font-weight: 600;
+                font-size: 18px;
+                margin-bottom: 15px;
+                text-align: center;
+                border-bottom: 2px solid #f1f1f1;
+                padding-bottom: 10px;
+            }
+            
+            .search-input {
+                border-radius: 8px;
+                border: 1px solid #ddd;
+                padding: 12px 15px;
+                font-size: 16px;
+                transition: all 0.3s ease;
+                width: 100%;
+                background-color: #f9fafb;
+                margin-bottom: 15px;
+            }
+            
+            .search-input:focus {
+                border-color: var(--primary-color);
+                box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+                background-color: #fff;
+                outline: none;
+            }
+            
+            .search-btn {
+                background-color: var(--primary-color);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                padding: 12px 15px;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                cursor: pointer;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .search-btn:hover {
+                background-color: var(--primary-dark);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+            
+            .transplant-match-btn {
+                background-color: var(--accent-color);
+                color: white;
+                border: none;
+                border-radius: 50px;
+                padding: 16px 32px;
+                font-size: 18px;
+                font-weight: 600;
+                transition: all var(--transition-speed);
+                text-decoration: none;
+                display: inline-block;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+                width: 100%;
+                text-align: center;
+            }
+            
+            .transplant-match-btn:hover {
+                background-color: #c0392b;
+                transform: translateY(-3px);
+                box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+                text-decoration: none;
+                color: white;
+            }
+            
+            .transplant-match-btn i {
+                margin-right: 8px;
+            }
+            
+            .search-results {
+                background-color: #f9fafb;
+                border-radius: 8px;
+                padding: 15px;
+                margin-top: 15px;
+                min-height: 100px;
+                border: 1px solid #eee;
+                opacity: 0;
+                transform: translateY(10px);
+                transition: all 0.3s ease;
+            }
+            
+            .search-results.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+           
+            
+            /* Animation keyframes */
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            @keyframes floatImage {
+                0%, 100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-15px);
+                }
+            }
+            
+            @keyframes rotate {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+            
+            @keyframes slideDown {
+                from {
+                    transform: translateY(-20px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes scaleIn {
+                from {
+                    transform: translateX(-50%) scaleX(0);
+                }
+                to {
+                    transform: translateX(-50%) scaleX(1);
+                }
+            }
+            
+            @keyframes slideUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            @keyframes ripple {
+                0% {
+                    transform: scale(0, 0);
+                    opacity: 0.5;
+                }
+                100% {
+                    transform: scale(20, 20);
+                    opacity: 0;
+                }
+            }
+            
+            /* Responsive styles */
+            @media (max-width: 991px) {
+                nav ul li {
+                    margin-left: 20px;
+                }
+                
+                nav ul li a {
+                    font-size: 15px;
+                }
+            }
+            
+            @media (max-width: 767px) {
+                nav {
+                    flex-direction: column;
+                    text-align: center;
+                }
+                
+                nav ul {
+                    margin-top: 20px;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+                
+                nav ul li {
+                    margin: 0 10px 10px;
+                }
+                
+                .dashboard-title {
+                    font-size: 28px;
+                }
+            }
+            
+            /* Footer Styles */
+            footer {
+                background-color: var(--dark-text);
+                color: var(--light-text);
+                padding: 60px 0 20px;
+                margin-top: 40px;
+            }
+            
+            .footer-logo img {
+                height: 60px;
+                margin-bottom: 30px;
+            }
+            
+            .footer-links {
+                margin-bottom: 30px;
+            }
+            
+            .footer-links h4 {
+                font-size: 18px;
+                font-weight: 600;
+                margin-bottom: 20px;
+                position: relative;
+                padding-bottom: 10px;
+            }
+            
+            .footer-links h4:after {
+                content: '';
+                position: absolute;
+                width: 40px;
+                height: 3px;
+                background-color: var(--primary-color);
+                bottom: 0;
+                left: 0;
+            }
+            
+            .footer-links ul {
+                list-style: none;
+                padding: 0;
+            }
+            
+            .footer-links li {
+                margin-bottom: 10px;
+            }
+            
+            .footer-links a {
+                color: var(--light-text);
+                text-decoration: none;
+                transition: color var(--transition-speed);
+            }
+            
+            .footer-links a:hover {
+                color: var(--primary-color);
+            }
+            
+            #copyright {
+                text-align: center;
+                padding-top: 20px;
+                border-top: 1px solid rgba(255,255,255,0.1);
+                margin-top: 20px;
+            
+            }
+
+            
+
+        </style>
+
+        <title>Dashboard - Organ Donation Platform</title>
+    </head>
+    <body>
+        <!-- Header will be replaced by the dashboard-navigation.js script -->
+        <header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav>
+                            <a href="/homepage"><img id="logo" src="images/organ-donation-platform-logo-1.svg" alt="Organ Donation Platform"></a>
+                            <ul>
+                                <li><a id="nav-home" style="color: black;" href="/homepage">Home</a></li>
+                                <li><a id="nav-about" style="color: black;" href="/about-us">About Us</a></li>
+                                <li><a id="nav-contact" style="color: black;" href="/contact">Contact</a></li>
+                                <li><a id="nav-awareness" style="color: black;" href="/awareness">Awareness</a></li>
+                                <li><a id="nav-pledge" style="color: black;" href="/donor-pledge">Pledge</a></li>
+                                <li><a id="nav-search" style="color: black;" href="/search">Search</a></li>
+                                <li><a id="nav-dashboard" style="color: black;" href="/" class="dashboard-link">Dashboard <i class="fas fa-chart-line"></i></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <div class="dashboard-container">
+            <div class="container">
+                <h1 class="dashboard-title">Organ Donation Platform Dashboard</h1>
+                
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card-dashboard">
+                            <h3 class="card-title">Donor Management</h3>
+                            <div class="button-container">
+                                <a href="/donor-registration" class="dashboard-btn">
+                                    <i class="fas fa-user-plus"></i> Register Donor
+                                </a>
+                                <a href="/view-donors" class="dashboard-btn">
+                                    <i class="fas fa-users"></i> View Donors
+                                </a>
+                                <a href="/verify-pledges" class="dashboard-btn">
+                                    <i class="fas fa-clipboard-check"></i> Verify Pledges
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card-dashboard">
+                            <h3 class="card-title">Patient Management</h3>
+                            <div class="button-container">
+                                <a href="/patient-registration" class="dashboard-btn">
+                                    <i class="fas fa-user-plus"></i> Register Patient
+                                </a>
+                                <a href="/view-patients" class="dashboard-btn">
+                                    <i class="fas fa-hospital-user"></i> View Patients
+                                </a>
+                                <a href="/view-pledges" class="dashboard-btn">
+                                    <i class="fas fa-clipboard-list"></i> View Pledges
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card-dashboard">
+                            <h3 class="card-title">Match Making</h3>
+                            <a href="/transplant-matching" class="transplant-match-btn">
+                                <i class="fas fa-heartbeat"></i> Find Transplant Matches
+                            </a>
+                            <div class="mt-4 text-center">
+                                <p>Find potential matches between donors and recipients based on compatibility factors.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- <div class="row mt-4">
+                    <div class="col-md-6 mb-4">
+                        <div class="search-card">
+                            <h3 class="search-title">Search Donor</h3>
+                            <input type="text" class="search-input" id="inputDonorMedicalID" placeholder="Enter Donor Medical ID">
+                            <button type="button" class="search-btn" onclick="searchDonor()">
+                                <i class="fas fa-search"></i> Search Donor
+                            </button>
+                            <div class="search-results" id="donorResults">
+                               
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <div class="search-card">
+                            <h3 class="search-title">Search Patient</h3>
+                            <input type="text" class="search-input" id="inputPatientMedicalID" placeholder="Enter Patient Medical ID">
+                            <button type="button" class="search-btn" onclick="searchPatient()">
+                                <i class="fas fa-search"></i> Search Patient
+                            </button>
+                            <div class="search-results" id="patientResults">
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+        <script>
+            // Micro animations and interactive elements
+            document.addEventListener('DOMContentLoaded', function() {
+                // Add hover effects to buttons
+                const buttons = document.querySelectorAll('.dashboard-btn, .search-btn, .transplant-match-btn');
+                buttons.forEach(button => {
+                    button.addEventListener('mouseenter', function() {
+                        this.style.transform = 'translateY(-2px)';
+                    });
+                    
+                    button.addEventListener('mouseleave', function() {
+                        this.style.transform = 'translateY(0)';
+                    });
+                });
+                
+                // Add focus animations to search inputs
+                const inputs = document.querySelectorAll('.search-input');
+                inputs.forEach(input => {
+                    input.addEventListener('focus', function() {
+                        this.style.borderColor = '#3498db';
+                        this.style.boxShadow = '0 0 0 3px rgba(52, 152, 219, 0.2)';
+                    });
+                    
+                    input.addEventListener('blur', function() {
+                        this.style.borderColor = '#ddd';
+                        this.style.boxShadow = 'none';
+                    });
+                });
+            });
+            
+            // Function to search donor with animation
+            function searchDonor() {
+                const resultsDiv = document.getElementById('donorResults');
+                resultsDiv.classList.remove('show');
+                
+                // Add loading animation
+                resultsDiv.innerHTML = '<div style="text-align: center; padding: 20px;"><i class="fas fa-spinner fa-spin" style="font-size: 24px; color: #3498db;"></i><p>Searching...</p></div>';
+                resultsDiv.classList.add('show');
+                
+                // Create hidden elements for App.search to populate
+                if (!document.getElementById('getDonorFullName')) {
+                    const hiddenElements = document.createElement('div');
+                    hiddenElements.style.display = 'none';
+                    hiddenElements.innerHTML = `
+                        <p id="getDonorFullName"></p>
+                        <p id="getDonorAge"></p>
+                        <p id="getDonorGender"></p>
+                        <p id="getDonorBloodType"></p>
+                        <p id="getDonorOrgan"></p>
+                        <p id="getDonorWeight"></p>
+                        <p id="getDonorHeight"></p>
+                        <p id="getDonorPhone"></p>
+                        <p id="searchDonorCheck"></p>
+                    `;
+                    document.body.appendChild(hiddenElements);
+                }
+                
+                // Call the search function after a short delay to show animation
+                setTimeout(function() {
+                    App.search('Donor')
+                        .then(function() {
+                            resultsDiv.classList.remove('show');
+                            setTimeout(function() {
+                                // Prepare results content with formatting
+                                let resultsContent = '';
+                                
+                                if (document.getElementById('searchDonorCheck').innerHTML && 
+                                    document.getElementById('searchDonorCheck').innerHTML.includes('not exist')) {
+                                    resultsContent = `<p class="text-center text-danger"><i class="fas fa-exclamation-circle"></i> ${document.getElementById('searchDonorCheck').innerHTML}</p>`;
+                                } else {
+                                    if (document.getElementById('getDonorFullName').innerHTML)
+                                        resultsContent += `<p><strong>Name:</strong> ${document.getElementById('getDonorFullName').innerHTML.replace('Full Name: ', '')}</p>`;
+                                    
+                                    if (document.getElementById('getDonorAge').innerHTML)
+                                        resultsContent += `<p><strong>Age:</strong> ${document.getElementById('getDonorAge').innerHTML.replace('Age: ', '')}</p>`;
+                                    
+                                    if (document.getElementById('getDonorGender').innerHTML)
+                                        resultsContent += `<p><strong>Gender:</strong> ${document.getElementById('getDonorGender').innerHTML.replace('Gender: ', '')}</p>`;
+                                    
+                                    if (document.getElementById('getDonorBloodType').innerHTML)
+                                        resultsContent += `<p><strong>Blood Type:</strong> ${document.getElementById('getDonorBloodType').innerHTML.replace('Blood Type: ', '')}</p>`;
+                                    
+                                    if (document.getElementById('getDonorOrgan').innerHTML)
+                                        resultsContent += `<p><strong>Organs:</strong> ${document.getElementById('getDonorOrgan').innerHTML.replace('Organ: ', '')}</p>`;
+                                    
+                                    if (document.getElementById('getDonorWeight').innerHTML)
+                                        resultsContent += `<p><strong>Weight:</strong> ${document.getElementById('getDonorWeight').innerHTML.replace('Weight: ', '')}</p>`;
+                                    
+                                    if (document.getElementById('getDonorHeight').innerHTML)
+                                        resultsContent += `<p><strong>Height:</strong> ${document.getElementById('getDonorHeight').innerHTML.replace('Height: ', '')}</p>`;
+                                    
+                                    if (document.getElementById('getDonorPhone') && document.getElementById('getDonorPhone').innerHTML)
+                                        resultsContent += `<p><strong>Contact:</strong> ${document.getElementById('getDonorPhone').innerHTML.replace('Contact: ', '')}</p>`;
+                                        
+                                    if (!resultsContent) {
+                                        resultsContent = `<p class="text-center text-danger"><i class="fas fa-exclamation-circle"></i> No data found</p>`;
+                                    }
+                                }
+                                
+                                resultsDiv.innerHTML = resultsContent;
+                                resultsDiv.classList.add('show');
+                            }, 300);
+                        })
+                        .catch(function(error) {
+                            resultsDiv.innerHTML = `<p class="text-center text-danger"><i class="fas fa-exclamation-circle"></i> Error: ${error.message}</p>`;
+                            resultsDiv.classList.add('show');
+                        });
+                }, 800);
+            }
+            
+            // Function to search patient with animation
+            function searchPatient() {
+                const resultsDiv = document.getElementById('patientResults');
+                resultsDiv.classList.remove('show');
+                
+                // Add loading animation
+                resultsDiv.innerHTML = '<div style="text-align: center; padding: 20px;"><i class="fas fa-spinner fa-spin" style="font-size: 24px; color: #3498db;"></i><p>Searching...</p></div>';
+                resultsDiv.classList.add('show');
+                
+                // Create hidden elements for App.search to populate
+                if (!document.getElementById('getPatientFullName')) {
+                    const hiddenElements = document.createElement('div');
+                    hiddenElements.style.display = 'none';
+                    hiddenElements.innerHTML = `
+                        <p id="getPatientFullName"></p>
+                        <p id="getPatientAge"></p>
+                        <p id="getPatientGender"></p>
+                        <p id="getPatientBloodType"></p>
+                        <p id="getPatientOrgan"></p>
+                        <p id="getPatientWeight"></p>
+                        <p id="getPatientHeight"></p>
+                        <p id="searchPatientCheck"></p>
+                    `;
+                    document.body.appendChild(hiddenElements);
+                }
+                
+                // Call the search function after a short delay to show animation
+                setTimeout(function() {
+                    App.search('Patient')
+                        .then(function() {
+                            resultsDiv.classList.remove('show');
+                            setTimeout(function() {
+                                // Prepare results content with formatting
+                                let resultsContent = '';
+                                
+                                if (document.getElementById('searchPatientCheck').innerHTML && 
+                                    document.getElementById('searchPatientCheck').innerHTML.includes('not exist')) {
+                                    resultsContent = `<p class="text-center text-danger"><i class="fas fa-exclamation-circle"></i> ${document.getElementById('searchPatientCheck').innerHTML}</p>`;
+                                } else {
+                                    if (document.getElementById('getPatientFullName').innerHTML)
+                                        resultsContent += `<p><strong>Name:</strong> ${document.getElementById('getPatientFullName').innerHTML.replace('Full Name: ', '')}</p>`;
+                                    
+                                    if (document.getElementById('getPatientAge').innerHTML)
+                                        resultsContent += `<p><strong>Age:</strong> ${document.getElementById('getPatientAge').innerHTML.replace('Age: ', '')}</p>`;
+                                    
+                                    if (document.getElementById('getPatientGender').innerHTML)
+                                        resultsContent += `<p><strong>Gender:</strong> ${document.getElementById('getPatientGender').innerHTML.replace('Gender: ', '')}</p>`;
+                                    
+                                    if (document.getElementById('getPatientBloodType').innerHTML)
+                                        resultsContent += `<p><strong>Blood Type:</strong> ${document.getElementById('getPatientBloodType').innerHTML.replace('Blood Type: ', '')}</p>`;
+                                    
+                                    if (document.getElementById('getPatientOrgan').innerHTML)
+                                        resultsContent += `<p><strong>Organs:</strong> ${document.getElementById('getPatientOrgan').innerHTML.replace('Organ: ', '')}</p>`;
+                                    
+                                    if (document.getElementById('getPatientWeight').innerHTML)
+                                        resultsContent += `<p><strong>Weight:</strong> ${document.getElementById('getPatientWeight').innerHTML.replace('Weight: ', '')}</p>`;
+                                    
+                                    if (document.getElementById('getPatientHeight').innerHTML)
+                                        resultsContent += `<p><strong>Height:</strong> ${document.getElementById('getPatientHeight').innerHTML.replace('Height: ', '')}</p>`;
+                                    
+                                    if (!resultsContent) {
+                                        resultsContent = `<p class="text-center text-danger"><i class="fas fa-exclamation-circle"></i> No data found</p>`;
+                                    }
+                                }
+                                
+                                resultsDiv.innerHTML = resultsContent;
+                                resultsDiv.classList.add('show');
+                            }, 300);
+                        })
+                        .catch(function(error) {
+                            resultsDiv.innerHTML = `<p class="text-center text-danger"><i class="fas fa-exclamation-circle"></i> Error: ${error.message}</p>`;
+                            resultsDiv.classList.add('show');
+                        });
+                }, 800);
+            }
+            
+            // Override App.search to return a Promise
+            const originalSearch = App.search;
+            App.search = function(user) {
+                return new Promise((resolve) => {
+                    originalSearch.call(App, user);
+                    // Since we can't easily detect when the search completes,
+                    // we'll resolve after a reasonable timeout
+                    setTimeout(resolve, 1000);
+                });
+            };
+        </script>
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="footer-logo">
+                            <img src="images/organ-donation-platform-logo-white.svg" alt="Organ Donation Platform">
+                        </div>
+                        <p>Our platform connects organ donors with recipients using secure blockchain technology, making the organ donation process more transparent, secure, and efficient.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="footer-links">
+                            <h4>Quick Links</h4>
+                            <ul>
+                                <li><a  href="/homepage"><p style="color: white;">Home</p></a></li>
+                                <li><a href="/about-us"><p style="color: white;">About Us</p></a></li>
+                                <li><a href="/contact"><p style="color: white;">Contact</p></a></li>
+                                <li><a href="/awareness"><p style="color: white;">Awareness</p></a></li>
+                                <li><a href="/donor-pledge"><p style="color: white;">Pledge</p></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="footer-links">
+                            <h4>Platform</h4>
+                            <ul>
+                                <li><a href="/"><p style="color: white;">Dashboard</p></a></li>
+                                <li><a href="/donor-registration"><p style="color: white;">Register as Donor</p></a></li>
+                                <li><a href="/patient-registration"><p style="color: white;">Register as Patient</p></a></li>
+                                <li><a href="/view-donors"><p style="color: white;">View Donors</p></a></li>
+                                <li><a href="/view-patients"><p style="color: white;">View Patients</p></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div id="copyright">
+                            <p>Copyright © 2025 Organ Donation Platform - All rights reserved</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

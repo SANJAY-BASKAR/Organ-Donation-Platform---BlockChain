@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="organ donation, blockchain, organ transplant, transparency">
+    <meta name="description" content="Organ Donation Platform using Blockchain">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/style-home.css">
+    <link rel="stylesheet" href="../css/fontawesome-all.css">
+    <link rel="icon" href="../images/organ-donation-logo-new.svg">
+    <script src="../js/navigation.js"></script>
+    
+    <title>About Us - Organ Donation Platform</title>
+    
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #94e1ff;
+            --accent-color: #e74c3c;
+            --light-bg: #a8e1fa;
+            --dark-text: #2c3e50;
+            --light-text: #ecf0f1;
+        }
+        
+        .hero-section {
+            background-color: var(--light-bg);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero-content h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--dark-text);
+            line-height: 1.2;
+        }
+        
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--dark-text);
+        }
+        
+        .section-heading {
+            text-align: center;
+            color: var(--dark-text);
+            font-weight: 700;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .mission-vision {
+            padding: 60px 0;
+            background-color: #fff;
+        }
+        
+        .mission-card, .vision-card {
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: 100%;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .mission-card:hover, .vision-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .mission-card {
+            background-color: var(--light-bg);
+        }
+        
+        .vision-card {
+            background-color: var(--light-bg);
+        }
+        
+        .card-icon {
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .card-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .blockchain-section {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .feature-card {
+            padding: 25px;
+            border-radius: 10px;
+            background-color: var(--light-bg);
+            margin-bottom: 30px;
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        /* Footer styles to match the homepage */
+        footer {
+            background-color: var(--dark-text);
+            color: var(--light-text);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-logo img {
+            height: 60px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-links {
+            margin-bottom: 30px;
+        }
+        
+        .footer-links h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-links h4:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        #copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 20px;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        nav{
+            background-color: white;
+        }
+
+        /* Navigation styles to match homepage */
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 8px 0;
+            position: relative;
+            transition: color var(--transition-speed);
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width var(--transition-speed);
+        }
+        
+        nav ul li a:hover:after,
+        nav ul li a.active:after {
+            width: 100%;
+        }
+        
+        #logo {
+            height: 60px;
+            transition: transform var(--transition-speed);
+        }
+        
+        #logo:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header will be replaced by the navigation.js script -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav>
+                        <a href="/homepage"><img id="logo" src="../images/organ-donation-platform-logo-1.svg" alt="Organ Donation Platform"></a>
+                        <ul>
+                            <li><a class="active" href="/homepage">Home</a></li>
+                            <li><a href="/about-us">About Us</a></li>
+                            <li><a href="/contact">Contact</a></li>
+                            <li><a href="/awareness">Awareness</a></li>
+                            <li><a href="/donor-pledge">Pledge</a></li>
+                            <li><a href="/search">Search</a></li>
+                            <li><a href="/" class="dashboard-link">Dashboard <i class="fas fa-chart-line"></i></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="hero-content">
+                            <h1>Revolutionizing Organ Donation with Blockchain</h1>
+                            <p>Our platform aims to create a transparent, secure, and efficient system for organ donation and transplantation, leveraging the power of blockchain technology to save more lives.</p>
+                            <p>At Organ Donation Platform, we're committed to solving the critical challenges in organ donation through innovative technology and compassionate service.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-5 d-flex align-items-center justify-content-center">
+                        <img src="../images/organ-donation-platform-logo.svg" alt="Organ Donation Platform" class="img-fluid" style="max-width: 80%;">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Mission & Vision Section -->
+        <section class="mission-vision">
+            <div class="container">
+                <h2 class="section-heading">Our Mission & Vision</h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="mission-card">
+                            <div class="card-icon">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <h3 class="card-title">Our Mission</h3>
+                            <p>To create a transparent and secure platform that facilitates organ donation and transplantation using blockchain technology, eliminating inefficiencies and building trust in the donation process.</p>
+                            <p>We strive to save more lives by connecting donors and recipients through a secure, transparent system that ensures organs reach those who need them most.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="vision-card">
+                            <div class="card-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <h3 class="card-title">Our Vision</h3>
+                            <p>A world where no one dies waiting for an organ transplant due to inefficiencies in the system or lack of trust in the process.</p>
+                            <p>We envision a future where blockchain technology revolutionizes healthcare by creating transparent, tamper-proof systems that save lives and inspire more people to become organ donors.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Blockchain Features Section -->
+        <section class="blockchain-section">
+            <div class="container">
+                <h2 class="section-heading">How Blockchain Transforms Organ Donation</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h4 class="feature-title">Security & Privacy</h4>
+                            <p>Our blockchain system ensures secure storage of donor and recipient data with advanced encryption, protecting sensitive medical information while maintaining accessibility for authorized personnel.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <h4 class="feature-title">Transparency</h4>
+                            <p>Every step of the organ donation process is recorded on the blockchain, creating an immutable audit trail that prevents fraud and builds trust among all stakeholders in the system.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <h4 class="feature-title">Efficiency</h4>
+                            <p>Smart contracts automate matching and verification processes, reducing waiting times and ensuring organs reach recipients faster, significantly improving transplant success rates.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-link"></i>
+                            </div>
+                            <h4 class="feature-title">Traceability</h4>
+                            <p>Complete organ traceability from donor to recipient ensures compliance with regulations and provides a verifiable chain of custody throughout the transplantation process.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <h4 class="feature-title">Trust Building</h4>
+                            <p>The transparent nature of blockchain technology builds trust in the organ donation system, potentially increasing donation rates and saving more lives.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h4 class="feature-title">Global Access</h4>
+                            <p>Our platform enables secure cross-border organ sharing, expanding the pool of available organs and increasing the chances of finding matches for those in need.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-logo">
+                        <img src="../images/organ-donation-platform-logo-white.svg" alt="Organ Donation Platform">
+                    </div>
+                    <p>Our platform connects organ donors with recipients using secure blockchain technology, making the organ donation process more transparent, secure, and efficient.</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-links">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="/homepage">Home</a></li>
+                            <li><a href="/about-us">About Us</a></li>
+                            <li><a href="/contact">Contact</a></li>
+                            <li><a href="/awareness">Awareness</a></li>
+                            <li><a href="/donor-pledge">Pledge</a></li>
+                            <li><a href="/search">Search</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-links">
+                        <h4>Platform</h4>
+                        <ul>
+                            <li><a href="/">Dashboard</a></li>
+                            <li><a href="/donor-registration">Register as Donor</a></li>
+                            <li><a href="/patient-registration">Register as Patient</a></li>
+                            <li><a href="/view-donors">View Donors</a></li>
+                            <li><a href="/view-patients">View Patients</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div id="copyright">
+                        <p>Copyright © 2025 Organ Donation Platform - All rights reserved</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

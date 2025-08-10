@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,700;1,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link href="../css/styles.css" rel="stylesheet">
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="../css/fontawesome-all.css" rel="stylesheet">
+        <link rel="icon" href="../images/organ-donation-logo-new.svg">
+        <script src="../js/navigation.js"></script>
+        <script src="../main.js"></script>
+
+        <style>
+            /* Custom styles for improved design */
+            body {
+                background-color: #a8e1fa; /* Light blue background to match platform */
+                font-family: 'Montserrat', sans-serif;
+            }
+            
+            .page-title {
+                color: #2c3e50;
+                margin-bottom: 2rem;
+                text-align: center;
+                position: relative;
+                font-weight: 700;
+                animation: fadeIn 1s ease-in-out;
+                padding-bottom: 10px;
+                font-size: 32px;
+            }
+            
+            .page-title:after {
+                content: '';
+                position: absolute;
+                width: 80px;
+                height: 4px;
+                background-color: #e74c3c;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                border-radius: 2px;
+                animation: scaleIn 1s ease-in-out;
+            }
+            
+            .registration-card {
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+                padding: 30px 40px;
+                margin-bottom: 30px;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                animation: slideUp 0.5s ease-in-out;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+            
+            .form-group {
+                margin-bottom: 24px;
+                position: relative;
+            }
+            
+            .form-control {
+                border-radius: 5px;
+                border: 1px solid #ddd;
+                padding: 12px 15px;
+                font-size: 16px;
+                transition: all 0.3s ease;
+                width: 100%;
+                background-color: #f9fafb;
+            }
+            
+            .form-control:focus {
+                border-color: #3498db;
+                box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+                background-color: #fff;
+                outline: none;
+            }
+            
+            .form-label {
+                font-weight: 600;
+                color: #2c3e50;
+                margin-bottom: 8px;
+                display: block;
+                font-size: 15px;
+                transition: color 0.3s ease;
+            }
+            
+            .radio-group {
+                display: flex;
+                gap: 15px;
+                margin-top: 10px;
+                flex-wrap: wrap;
+            }
+            
+            .radio-option {
+                position: relative;
+                cursor: pointer;
+                flex: 1;
+                min-width: 120px;
+            }
+            
+            .radio-option input[type="radio"] {
+                position: absolute;
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+            
+            .radio-label {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background-color: #f1f7fc;
+                border: 2px solid #e0e6ed;
+                border-radius: 10px;
+                padding: 15px 10px;
+                text-align: center;
+                transition: all 0.3s ease;
+                height: 100%;
+            }
+            
+            .radio-icon {
+                font-size: 24px;
+                margin-bottom: 8px;
+                color: #3498db;
+            }
+            
+            .radio-option:hover .radio-label {
+                border-color: #3498db;
+                transform: translateY(-3px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+            
+            .radio-option input[type="radio"]:checked + .radio-label {
+                background-color: rgba(52, 152, 219, 0.1);
+                border-color: #3498db;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+            
+            .organ-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+                margin-top: 10px;
+            }
+            
+            .checkbox-option {
+                position: relative;
+                cursor: pointer;
+            }
+            
+            .checkbox-option input[type="checkbox"] {
+                position: absolute;
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+            
+            .checkbox-label {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background-color: #f1f7fc;
+                border: 2px solid #e0e6ed;
+                border-radius: 10px;
+                padding: 15px 10px;
+                text-align: center;
+                transition: all 0.3s ease;
+                height: 100%;
+            }
+            
+            .organ-icon {
+                font-size: 24px;
+                margin-bottom: 8px;
+                color: #3498db;
+            }
+            
+            .checkbox-option:hover .checkbox-label {
+                border-color: #3498db;
+                transform: translateY(-3px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+            
+            .checkbox-option input[type="checkbox"]:checked + .checkbox-label {
+                background-color: rgba(52, 152, 219, 0.1);
+                border-color: #3498db;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+            
+            .btn-submit {
+                background-color: #3498db;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                padding: 14px 24px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                transition: all 0.3s ease;
+                cursor: pointer;
+                width: 100%;
+                margin-top: 15px;
+                position: relative;
+                overflow: hidden;
+                font-size: 16px;
+            }
+            
+            .btn-submit:hover {
+                background-color: #2980b9;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+            
+            .alert {
+                border-radius: 5px;
+                padding: 15px;
+                margin-top: 20px;
+                transition: all 0.3s ease;
+            }
+            
+            .alert.warning {
+                opacity: 0;
+                transform: translateY(20px);
+                background-color: #fff;
+                border-left: 4px solid #ff9800;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+            
+            .alert.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            .select-wrapper {
+                position: relative;
+            }
+            
+            .select-wrapper::after {
+                content: '\f078';
+                font-family: 'Font Awesome 5 Free';
+                font-weight: 900;
+                position: absolute;
+                right: 12px;
+                top: 38px;
+                color: #777;
+                pointer-events: none;
+                font-size: 12px;
+            }
+            
+            .form-control.select-control {
+                padding-right: 30px;
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+            }
+            
+            .form-icon {
+                margin-right: 8px;
+                color: #3498db;
+            }
+            
+            /* Loading overlay styles */
+            .loading-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(255, 255, 255, 0.8);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.3s, visibility 0.3s;
+            }
+            
+            .loading-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .loader {
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                border: 5px solid #f3f3f3;
+                border-top: 5px solid #3498db;
+                animation: spin 1s linear infinite;
+            }
+            
+            .loader-content {
+                text-align: center;
+            }
+            
+            .loader-text {
+                margin-top: 20px;
+                font-weight: 600;
+                color: #3498db;
+            }
+            
+            /* Animations */
+            @keyframes slideUp {
+                from { transform: translateY(20px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+            
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            
+            @keyframes scaleIn {
+                from { transform: translateX(-50%) scaleX(0); }
+                to { transform: translateX(-50%) scaleX(1); }
+            }
+            
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+            
+            /* Responsive adjustments */
+            @media (max-width: 767px) {
+                .organ-grid {
+                    grid-template-columns: 1fr;
+                }
+                .radio-group {
+                    flex-direction: column;
+                    gap: 8px;
+                }
+            }
+        </style>
+
+        <title>Patient Registration</title>
+    </head>
+
+    <body>
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loader-content">
+                <div class="loader"></div>
+                <div class="loader-text">Processing your registration...</div>
+            </div>
+        </div>
+        
+        <!-- Header will be loaded by navigation.js -->
+        <header></header>
+        
+        <main>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-10 col-lg-8">
+                        <h1 class="page-title">Register as an Organ Recipient</h1>
+                        <div class="registration-card">
+                            <div class="form-group">
+                                <label class="form-label" for="PatientFullName"><i class="fas fa-user form-icon"></i>Full Name</label>
+                                <input type="text" class="form-control" id="PatientFullName" placeholder="Enter your full name">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="PatientAge"><i class="fas fa-birthday-cake form-icon"></i>Age</label>
+                                <input type="number" class="form-control" id="PatientAge" placeholder="Enter your age">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label"><i class="fas fa-venus-mars form-icon"></i>Gender</label>
+                                <div class="radio-group">
+                                    <label class="radio-option">
+                                        <input type="radio" name="gender" value="Male">
+                                        <div class="radio-label">
+                                            <i class="fas fa-mars radio-icon"></i>
+                                            <span>Male</span>
+                                        </div>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="gender" value="Female">
+                                        <div class="radio-label">
+                                            <i class="fas fa-venus radio-icon"></i>
+                                            <span>Female</span>
+                                        </div>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="gender" value="Others">
+                                        <div class="radio-label">
+                                            <i class="fas fa-transgender radio-icon"></i>
+                                            <span>Others</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="PatientMedicalID"><i class="fas fa-id-card form-icon"></i>Medical ID</label>
+                                <input type="text" class="form-control" id="PatientMedicalID" placeholder="Enter your medical ID">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="PatientBloodType"><i class="fas fa-tint form-icon"></i>Blood Type</label>
+                                <div class="select-wrapper">
+                                    <select class="form-control select-control" id="PatientBloodType">
+                                        <option value="A-">A-</option>
+                                        <option value="A+">A+</option>
+                                        <option value="B-">B-</option>
+                                        <option value="B+">B+</option>
+                                        <option value="AB-">AB-</option>
+                                        <option value="AB+">AB+</option>
+                                        <option value="O-">O-</option>
+                                        <option value="O+">O+</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label"><i class="fas fa-heartbeat form-icon"></i>Organ(s) Needed</label>
+                                <div class="organ-grid">
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="Organ" value="Left Kidney">
+                                        <div class="checkbox-label">
+                                            <i class="fas fa-kidneys organ-icon"></i>
+                                            <span>Left Kidney</span>
+                                        </div>
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="Organ" value="Right Kidney">
+                                        <div class="checkbox-label">
+                                            <i class="fas fa-kidneys organ-icon"></i>
+                                            <span>Right Kidney</span>
+                                        </div>
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="Organ" value="Left Lung">
+                                        <div class="checkbox-label">
+                                            <i class="fas fa-lungs organ-icon"></i>
+                                            <span>Left Lung</span>
+                                        </div>
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="Organ" value="Right Lung">
+                                        <div class="checkbox-label">
+                                            <i class="fas fa-lungs organ-icon"></i>
+                                            <span>Right Lung</span>
+                                        </div>
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="Organ" value="Liver">
+                                        <div class="checkbox-label">
+                                            <i class="fas fa-virus organ-icon"></i>
+                                            <span>Liver</span>
+                                        </div>
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="Organ" value="Heart">
+                                        <div class="checkbox-label">
+                                            <i class="fas fa-heart organ-icon"></i>
+                                            <span>Heart</span>
+                                        </div>
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="Organ" value="Pancreas">
+                                        <div class="checkbox-label">
+                                            <i class="fas fa-dna organ-icon"></i>
+                                            <span>Pancreas</span>
+                                        </div>
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="Organ" value="Intestine">
+                                        <div class="checkbox-label">
+                                            <i class="fas fa-wind organ-icon"></i>
+                                            <span>Intestine</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="PatientWeight"><i class="fas fa-weight form-icon"></i>Weight (kg)</label>
+                                        <input type="number" class="form-control" id="PatientWeight" placeholder="Enter your weight">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="PatientHeight"><i class="fas fa-ruler-vertical form-icon"></i>Height (cm)</label>
+                                        <input type="number" class="form-control" id="PatientHeight" placeholder="Enter your height">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button type="button" class="btn-submit" onclick="submitForm()">
+                                <i class="fas fa-heart"></i> Register as Patient
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-6">
+                        <div class="alert warning">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span id="PatientInputCheck"></span> <!-- warning -->
+                            <span class="closebtn" onclick="App.closeAlert();">&times;</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script>
+            // Micro animations for form elements
+            document.addEventListener('DOMContentLoaded', function() {
+                // Add animations for input focus
+                const inputs = document.querySelectorAll('.form-control');
+                inputs.forEach(input => {
+                    input.addEventListener('focus', function() {
+                        this.closest('.form-group').querySelector('.form-label').style.color = '#3498db';
+                    });
+                    
+                    input.addEventListener('blur', function() {
+                        this.closest('.form-group').querySelector('.form-label').style.color = '#2c3e50';
+                    });
+                });
+                
+                // Animate alert messages
+                const originalCloseAlert = App.closeAlert;
+                App.closeAlert = function() {
+                    document.querySelector('.alert.warning').classList.remove('show');
+                    setTimeout(function() {
+                        originalCloseAlert();
+                    }, 300);
+                };
+                
+                // Override showWarning to add animation
+                const originalShowWarning = window.showWarning;
+                window.showWarning = function(user, message, color) {
+                    originalShowWarning(user, message, color);
+                    setTimeout(function() {
+                        document.querySelector('.alert.warning').classList.add('show');
+                    }, 10);
+                };
+                
+                // Add ripple effect to options
+                const options = document.querySelectorAll('.radio-option, .checkbox-option');
+                options.forEach(option => {
+                    option.addEventListener('click', function() {
+                        this.style.animation = 'none';
+                        this.offsetHeight; // Trigger reflow
+                        this.style.animation = 'ripple 0.6s ease-out';
+                    });
+                });
+            });
+            
+            // Function to handle form submission with loader and redirect
+            function submitForm() {
+                // Show the loading overlay
+                document.getElementById('loadingOverlay').classList.add('active');
+                
+                // Call the App.register function
+                App.register('Patient')
+                    .then(function(result) {
+                        // After successful registration
+                        setTimeout(function() {
+                            // Hide loading overlay
+                            document.getElementById('loadingOverlay').classList.remove('active');
+                            
+                            // Show success message
+                            showWarning('Patient', 'Registration Successful! Redirecting to patient list...', '#04AA6D');
+                            
+                            // Redirect to view-patients page after 2 seconds
+                            setTimeout(function() {
+                                window.location.href = 'view-patients.html';
+                            }, 2000);
+                        }, 1500); // Simulate some processing time
+                    })
+                    .catch(function(error) {
+                        // If there was an error
+                        document.getElementById('loadingOverlay').classList.remove('active');
+                        showWarning('Patient', 'Error: ' + error.message, '#f44336');
+                    });
+            }
+            
+            // Override App.register to make it return a Promise
+            const originalRegister = App.register;
+            App.register = function(user) {
+                return new Promise((resolve, reject) => {
+                    try {
+                        originalRegister.call(App, user);
+                        
+                        // Create a mutation observer to check when the success message appears
+                        const observer = new MutationObserver((mutations) => {
+                            mutations.forEach((mutation) => {
+                                if (mutation.type === 'childList' || mutation.type === 'characterData') {
+                                    const message = document.getElementById(user + 'InputCheck').textContent;
+                                    if (message.includes('Registration Successful')) {
+                                        observer.disconnect();
+                                        resolve({ success: true });
+                                    } else if (message.includes('already exists') || message.includes('Error')) {
+                                        observer.disconnect();
+                                        reject(new Error(message));
+                                    }
+                                }
+                            });
+                        });
+                        
+                        // Start observing the warning element
+                        observer.observe(document.getElementById(user + 'InputCheck'), {
+                            childList: true,
+                            characterData: true,
+                            subtree: true
+                        });
+                        
+                        // Set a timeout in case no message appears
+                        setTimeout(() => {
+                            observer.disconnect();
+                            const message = document.getElementById(user + 'InputCheck').textContent;
+                            if (message.includes('Registration Successful')) {
+                                resolve({ success: true });
+                            } else if (message.length > 0) {
+                                reject(new Error(message));
+                            } else {
+                                reject(new Error('Validation failed, check your inputs'));
+                            }
+                        }, 3000);
+                    } catch (error) {
+                        reject(error);
+                    }
+                });
+            };
+        </script>
+    </body>
+</html>
