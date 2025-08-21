@@ -158,23 +158,8 @@ Now that everything is set-up, you can run the server.
 
 ## Team Members
 
-* [Rahul Sabinkar](https://github.com/RahulSabinkar)
-* [Sai Manikanta Teja](https://github.com/SaiManikantaTeja)
+* [SANJAY BASKAR](https://github.com/SANJAY-BASKAR)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/rahulsabinkar/organ-donation-platform.svg?style=for-the-badge
-[contributors-url]: https://github.com/rahulsabinkar/organ-donation-platform/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/rahulsabinkar/organ-donation-platform.svg?style=for-the-badge
-[forks-url]: https://github.com/rahulsabinkar/organ-donation-platform/network/members
-[stars-shield]: https://img.shields.io/github/stars/rahulsabinkar/organ-donation-platform.svg?style=for-the-badge
-[stars-url]: https://github.com/rahulsabinkar/organ-donation-platform/stargazers
-[issues-shield]: https://img.shields.io/github/issues/rahulsabinkar/organ-donation-platform.svg?style=for-the-badge
-[issues-url]: https://github.com/rahulsabinkar/organ-donation-platform/issues
-[node-shield-url]: https://img.shields.io/badge/node.js-brightgreen?style=for-the-badge&logo=nextdotjs&logoColor=white
-[node-url]: https://nodejs.org/
-[solidity-shield-url]: https://img.shields.io/badge/solidity-blue?style=for-the-badge&logo=solidity&logoColor=white
-[solidity-url]: https://soliditylang.org/
