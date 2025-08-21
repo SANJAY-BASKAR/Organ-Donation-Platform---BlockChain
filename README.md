@@ -159,6 +159,8 @@ Now that everything is set-up, you can run the server.
 ## Team Members
 
 * [SANJAY BASKAR](https://github.com/SANJAY-BASKAR)
+* [BERNESH S]
+* [NANDHA KUMAR]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
